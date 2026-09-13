@@ -19,16 +19,23 @@ jobs:
       - run: bun run lint
       - run: bun run build
 
+      # Secrets can't be tested in `if:` directly — surface the token through env first.
+      - id: cf
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -n "$CF_TOKEN" ]; then echo "ready=true" >> "$GITHUB_OUTPUT"; else echo "::warning::CLOUDFLARE_API_TOKEN is not set — skipping Cloudflare deploy"; echo "ready=false" >> "$GITHUB_OUTPUT"; fi
+
       # Pull requests: validate the deploy without publishing.
-      - if: github.event_name == 'pull_request'
+      - if: github.event_name == 'pull_request' && steps.cf.outputs.ready == 'true'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy --dry-run
 
-      # main: publish to Cloudflare Workers (static assets).
-      - if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      # main: publish to Cloudflare Workers.
+      - if: github.ref == 'refs/heads/main' && github.event_name == 'push' && steps.cf.outputs.ready == 'true'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
