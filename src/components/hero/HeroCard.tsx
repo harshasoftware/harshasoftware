@@ -32,13 +32,7 @@ export function HeroCard() {
             Github
           </a>
         </div>
-        <a
-          href={site.links.vcard}
-          download="Sri Harsha Seethalam.vcf"
-          className="w-fit text-[12px] font-bold text-sky underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky"
-        >
-          Save Contact
-        </a>
+        {/* Save Contact (vCard at /harsha.vcf) is hidden for now at the owner's request. */}
       </div>
     </div>
   );

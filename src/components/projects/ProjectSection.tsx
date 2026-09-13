@@ -9,7 +9,7 @@ export function ProjectSection({ project }: { project: Project }) {
 
   if (project.layout === 'overlay') {
     return (
-      <section className={cn('relative min-h-[646px] overflow-hidden', theme.bg, theme.fg)} aria-labelledby={headingId}>
+      <section className={cn('relative overflow-hidden', project.bandHeight ?? 'min-h-[646px]', theme.bg, theme.fg)} aria-labelledby={headingId}>
         <LiveTile visual={project.id} poster={project.poster} bgClass={theme.bg} label={`${project.title} live preview`} />
         <h3
           id={headingId}

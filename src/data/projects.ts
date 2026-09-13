@@ -7,6 +7,8 @@ export interface Project {
   description?: string;
   /** 'stacked' = heading above the visual (default); 'overlay' = the visual fills the band with only the title as a wordmark at the bottom. */
   layout?: 'stacked' | 'overlay';
+  /** Overlay bands default to the Framer band height (646px); a Tailwind min-height utility overrides it. */
+  bandHeight?: string;
   theme: {
     /** Tailwind background utility for the full-bleed band */
     bg: string;
@@ -61,7 +63,9 @@ export const projects: Project[] = [
   {
     id: 'priceguru',
     title: 'Price Guru',
-    subtitle: 'Web 3.0 IPFS Protocol based Chrome Extension for Shopping',
+    // Visual-only band (extension popup + mascot) with a wordmark; the wordmark links to price.guru.
+    layout: 'overlay',
+    bandHeight: 'min-h-[540px]',
     theme: { bg: 'bg-sand', fg: 'text-body', muted: 'text-body/85', titleFont: 'sans' },
     cta: { label: 'Learn More', href: 'https://price.guru' },
     poster: { path: 'projects/priceguru-avatar.webp', alt: 'Price Guru mascot wearing an orange turban', width: 800, height: 800, fit: 'contain' },

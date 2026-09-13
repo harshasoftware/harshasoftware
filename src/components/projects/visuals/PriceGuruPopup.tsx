@@ -45,7 +45,7 @@ function PriceGuruPopup({ active }: LiveVisualProps) {
   const pct = Math.round((saved / deal.listed) * 100);
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center overflow-hidden" aria-hidden="true">
+    <div className="absolute inset-0 flex items-center justify-center overflow-hidden pb-12" aria-hidden="true">
       <div className="relative flex w-full max-w-[860px] items-center justify-center gap-6 px-4 md:gap-14">
         {/* mascot */}
         <motion.img
