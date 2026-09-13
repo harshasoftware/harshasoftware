@@ -42,7 +42,7 @@ function Face({ k, upper }: { k: number; upper: boolean }) {
 
 function ZyllionOctahedron({ active }: LiveVisualProps) {
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-white" aria-hidden="true">
+    <div className="absolute inset-0 flex items-center justify-center bg-white pb-10" aria-hidden="true">
       <div className="relative" style={{ perspective: 1100, width: S * 1.6, height: S * 1.9 }}>
         {/* floating wrapper */}
         <div

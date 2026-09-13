@@ -56,7 +56,9 @@ export const projects: Project[] = [
   {
     id: 'zyllion',
     title: 'Zyllion',
-    subtitle: 'Secure SOC2 platform for 1099, W2 onboarding',
+    // Visual-only band (spinning octahedron) with a wordmark; no public link for this one.
+    layout: 'overlay',
+    bandHeight: 'min-h-[540px]',
     theme: { bg: 'bg-white', fg: 'text-body', muted: 'text-body/85', titleFont: 'sans' },
     poster: { path: 'projects/zyllion-logo.png', alt: 'Zyllion blue octahedron logo', width: 779, height: 620, fit: 'contain' },
   },
