@@ -49,7 +49,7 @@ export function LiveTile({ visual, poster, label, bgClass, className, rootMargin
     <div ref={ref} role="group" aria-label={label} className={cn('absolute inset-0', className)}>
       {poster.frame === 'card' ? (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex h-full max-w-full items-center justify-center rounded-[28px] bg-white p-[4%] shadow-[0_24px_48px_rgba(0,40,0,0.18)]" style={{ aspectRatio: `${poster.width} / ${poster.height}` }}>
+          <div className="flex h-full max-w-full items-center justify-center rounded-[28px] bg-white p-[4%] shadow-[0_24px_48px_rgba(0,0,0,0.12)]" style={{ aspectRatio: `${poster.width} / ${poster.height}` }}>
             <img
               src={img(poster.path, { w: 900 })}
               srcSet={srcSet(poster.path, [600, 900])}

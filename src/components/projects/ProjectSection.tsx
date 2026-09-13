@@ -6,6 +6,24 @@ import { LiveTile } from './LiveTile';
 export function ProjectSection({ project }: { project: Project }) {
   const { theme } = project;
   const headingId = `project-${project.id}-title`;
+
+  if (project.layout === 'overlay') {
+    return (
+      <section className={cn('relative min-h-[646px] overflow-hidden', theme.bg, theme.fg)} aria-labelledby={headingId}>
+        <LiveTile visual={project.id} poster={project.poster} bgClass={theme.bg} label={`${project.title} live preview`} />
+        <h3
+          id={headingId}
+          className={cn(
+            'pointer-events-none absolute inset-x-0 bottom-8 z-10 text-center font-bold tracking-[-0.5px]',
+            theme.titleFont === 'grotesk' ? 'font-grotesk text-[22px]' : 'text-[22px]',
+          )}
+        >
+          {project.title}
+        </h3>
+      </section>
+    );
+  }
+
   return (
     <section className={cn('flex min-h-[646px] flex-col', theme.bg, theme.fg)} aria-labelledby={headingId}>
       <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col px-6 pb-8 pt-14 md:px-10 xl:px-16">
@@ -30,7 +48,10 @@ export function ProjectSection({ project }: { project: Project }) {
               href={project.cta.href}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex items-center justify-center rounded-lg bg-chip px-5 py-2.5 text-[14px] font-bold text-body shadow-sm transition hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+              className={cn(
+                'mt-6 inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-[14px] font-bold shadow-sm transition hover:-translate-y-0.5 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current',
+                theme.cta ?? 'bg-chip text-body',
+              )}
             >
               {project.cta.label}
             </a>

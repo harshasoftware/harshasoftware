@@ -90,7 +90,7 @@
     box-sizing: border-box;
     background: #fff;
     border-radius: 28px;
-    box-shadow: 0 24px 48px rgba(0, 40, 0, 0.18);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
     justify-self: start;
   }
 

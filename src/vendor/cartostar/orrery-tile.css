@@ -7,8 +7,8 @@
   --text-secondary: #a1a1aa;
   --font-serif: "Cinzel", "Cinzel Fallback", "Times New Roman", serif;
   --font-sans: "Inter Variable", "Inter", system-ui, sans-serif;
-  /* The source hero is 100vh tall; scale the orbits into a 440px band. */
-  --orbit-scale: 0.62;
+  /* The source hero is 100vh tall; scale the orbits into the 646px band. */
+  --orbit-scale: 0.8;
 
   position: absolute;
   inset: 0;
@@ -41,12 +41,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.1rem;
+    gap: 0.9rem;
     width: 100%;
     position: relative;
     z-index: 10;
     pointer-events: none; /* Allow hover to pass through to orbiting planets */
-    padding: 0 16px;
+    /* Leave room for the "Cartostar" wordmark the section overlays at the bottom. */
+    padding: 0 16px 48px;
   }
 
   .cs-pill {
@@ -66,8 +67,8 @@
     font-family: var(--font-serif);
     font-weight: 400;
     letter-spacing: -0.02em;
-    font-size: clamp(1.6rem, 3.6vw, 3.25rem);
-    line-height: 1;
+    font-size: clamp(1.6rem, 3.4vw, 3rem);
+    line-height: 1.05;
     margin: 0;
     text-transform: uppercase;
     color: #fff;
@@ -250,7 +251,7 @@
 /* Smaller orbits + planets on narrow screens (source: max-width 768px) */
 @media (max-width: 809px) {
   .cs-tile {
-    --orbit-scale: 0.42;
+    --orbit-scale: 0.5;
   }
   .cs-tile .orbit-path {
     border-width: 10px;

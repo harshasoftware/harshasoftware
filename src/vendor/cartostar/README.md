@@ -10,6 +10,7 @@ Lifted from `harshasoftware/cartostar` @ `92cbd8b0` — the cartostar.app hero o
 
 Edits vs. the source:
 - Takes `{ active }` from `LiveTile`; the GSAP timeline and the CSS orbit animations pause while off-screen.
-- Orbit radii are multiplied by `--orbit-scale` so the orrery fits a 440px band (the source hero is 100vh); the tile clips overflow like the original section crop.
+- Three orbits instead of five (venus / jupiter / saturn) and radii multiplied by `--orbit-scale` so the orrery fits the 646px band (the source hero is 100vh); the tile clips overflow like the original section crop. The headline is one line from the tablet breakpoint up.
+- The band is visual-only: the portfolio overlays just a "Cartostar" wordmark at the bottom (no separate heading/CTA).
 - `LandingHeroSearch` (Radar autocomplete + router + analytics) → decorative "Where were you born?" pill; the iOS `Link` pill is a static badge.
 - `requestIdleCallback` deferral kept; the prerender-boot special case is dropped (no prerender here).

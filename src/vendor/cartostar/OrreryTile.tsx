@@ -7,6 +7,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ArrowRight, Search } from 'lucide-react';
 import type { LiveVisualProps } from '@/components/projects/visuals/types';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 gsap.registerPlugin(useGSAP);
 
@@ -19,13 +20,12 @@ const HERO_SUBHEADLINES = [
   'Real-time astrocartography for your life path.',
 ];
 
-// Orbital planet configuration - planets orbit AROUND the hero text (outer orbits)
+// Orbital planet configuration - planets orbit AROUND the hero text (outer orbits).
+// Three widely spaced orbits (the source uses five) so the 646px band doesn't read as a stack of rings.
 const ORBITAL_PLANETS = [
-  { src: '/images/cartostar/venus-planet-96.png', orbitRadius: 320, duration: 50, size: 42, startAngle: 0 },
-  { src: '/images/cartostar/mars-planet-96.png', orbitRadius: 380, duration: 65, size: 50, startAngle: 72 },
-  { src: '/images/cartostar/jupiter-planet-96.png', orbitRadius: 440, duration: 85, size: 58, startAngle: 144 },
-  { src: '/images/cartostar/saturn-96.png', orbitRadius: 500, duration: 105, size: 54, startAngle: 216 },
-  { src: '/images/cartostar/neptune-96.png', orbitRadius: 560, duration: 125, size: 46, startAngle: 288 },
+  { src: '/images/cartostar/venus-planet-96.png', orbitRadius: 300, duration: 50, size: 42, startAngle: 0 },
+  { src: '/images/cartostar/jupiter-planet-96.png', orbitRadius: 440, duration: 85, size: 58, startAngle: 120 },
+  { src: '/images/cartostar/saturn-96.png', orbitRadius: 580, duration: 105, size: 54, startAngle: 240 },
 ];
 
 const OrbitingPlanets = memo(() => {
@@ -74,6 +74,9 @@ function OrreryTile({ active }: LiveVisualProps) {
   const textRef = useRef<HTMLSpanElement>(null);
   const subTextRef = useRef<HTMLParagraphElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+  // One-line headline where there's room; the source's two-line break only below the tablet breakpoint.
+  const wide = useMediaQuery('(min-width: 810px)');
+  const headline = wide ? HERO_HEADLINES[index].replace('\n', ' ') : HERO_HEADLINES[index];
 
   useGSAP(
     () => {
@@ -117,7 +120,7 @@ function OrreryTile({ active }: LiveVisualProps) {
         </div>
         <p className="hero-title">
           <span ref={textRef} className="block text-center whitespace-pre-wrap">
-            {HERO_HEADLINES[index]}
+            {headline}
           </span>
         </p>
         <p ref={subTextRef} className="hero-subtitle text-gradient">

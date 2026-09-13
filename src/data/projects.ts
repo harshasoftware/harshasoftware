@@ -5,6 +5,8 @@ export interface Project {
   title: string;
   subtitle?: string;
   description?: string;
+  /** 'stacked' = heading above the visual (default); 'overlay' = the visual fills the band with only the title as a wordmark at the bottom. */
+  layout?: 'stacked' | 'overlay';
   theme: {
     /** Tailwind background utility for the full-bleed band */
     bg: string;
@@ -13,6 +15,8 @@ export interface Project {
     /** Muted text color utility for subtitles */
     muted: string;
     titleFont: 'grotesk' | 'sans';
+    /** Optional CTA pill classes (default: the Framer site's light chip) */
+    cta?: string;
   };
   cta?: { label: string; href: string };
   /** Static image shown before/without the live visual (path under public/images) */
@@ -31,9 +35,9 @@ export const projects: Project[] = [
   {
     id: 'cartostar',
     title: 'Cartostar',
-    subtitle: 'A precision astrocartography tool.',
+    // The live hero carries its own copy (pill, headline, subtitle, search), so this band is visual-only + wordmark.
+    layout: 'overlay',
     theme: { bg: 'bg-navy', fg: 'text-white', muted: 'text-white/80', titleFont: 'grotesk' },
-    cta: { label: 'Launch App', href: 'https://cartostar.app' },
     poster: { path: 'projects/cartostar-poster.webp', alt: 'Cartostar showing planetary lines over a dark star map', width: 1400, height: 674, fit: 'cover' },
   },
   {
@@ -42,7 +46,8 @@ export const projects: Project[] = [
     subtitle: 'LLM Based Home Planning',
     description:
       'Our platform gives you remedies and actionable insights according to ancient science of interior harmony - vastu shastra.',
-    theme: { bg: 'bg-halo', fg: 'text-ink', muted: 'text-ink/85', titleFont: 'sans' },
+    // halohome.app's own scheme: beige section, charcoal type, black pill CTA
+    theme: { bg: 'bg-beige', fg: 'text-charcoal', muted: 'text-charcoal-muted', titleFont: 'sans', cta: 'bg-charcoal text-white hover:bg-black' },
     cta: { label: 'Learn More', href: 'https://halohome.app' },
     poster: { path: 'halohome/hero-houses.webp', alt: 'Isometric 3D illustration of a modern and a traditional house', width: 910, height: 800, fit: 'contain', frame: 'card' },
   },
