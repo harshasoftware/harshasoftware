@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/check-bundle.mjs",
+    "build": "wrangler types && tsc -b && vite build && node scripts/check-bundle.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
-    "typecheck": "tsc -b",
+    "typecheck": "wrangler types && tsc -b",
     "images": "node scripts/optimize-images.mjs",
     "deploy:dry": "bun run build && wrangler deploy --dry-run",
     "deploy": "bun run build && wrangler deploy",
