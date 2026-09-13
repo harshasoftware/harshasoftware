@@ -13,7 +13,7 @@ export interface VisualEntry {
 // Created once at module scope so React.lazy identities are stable across renders.
 export const visuals: Record<VisualKey, VisualEntry> = {
   cartostar: { Component: lazy(() => import('./CartostarVisual')), requiresWebGL: false, minWidth: 0 },
-  halohome: { Component: lazy(() => import('./HaloHomeVisual')), requiresWebGL: false, minWidth: 1200 },
+  halohome: { Component: lazy(() => import('./HaloHomeVisual')), requiresWebGL: false, minWidth: 0 },
   zyllion: { Component: lazy(() => import('./ZyllionOctahedron')), requiresWebGL: false, minWidth: 0 },
   priceguru: { Component: lazy(() => import('./PriceGuruPopup')), requiresWebGL: false, minWidth: 0 },
 };

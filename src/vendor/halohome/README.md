@@ -11,5 +11,6 @@ Lifted from `harshasoftware/halohome` (`HaloHome/Web/halohome`) @ `e4241a7` — 
 Edits vs. the source:
 - Takes `{ active }` from `LiveTile`; the GSAP timeline is paused while the tile is off-screen.
 - `LandingHeroSearch` (Google Places autocomplete + router + analytics) is replaced by a static, decorative search pill.
-- The 90vh `.hero-wrapper` / split layout is replaced by a two-column grid that fits the 646px project band; the mobile background image is dropped.
+- The 90vh `.hero-wrapper` / split layout is replaced by a two-column grid that fills the 646px project band (stacked below 1200px); the mobile background image is dropped. The band is visual-only: the portfolio overlays just a "Halo Home" wordmark (linking to halohome.app) at the bottom.
+- The houses sit on a white rounded card: the artwork has an opaque white platform baked in that only reads correctly on white.
 - Colors adapted to the green band (stone ink instead of white background); hotspots hide on touch devices via `(hover: none)` and are `tabIndex=-1` as in the source.

@@ -38,17 +38,17 @@ export const projects: Project[] = [
     // The live hero carries its own copy (pill, headline, subtitle, search), so this band is visual-only + wordmark.
     layout: 'overlay',
     theme: { bg: 'bg-navy', fg: 'text-white', muted: 'text-white/80', titleFont: 'grotesk' },
+    cta: { label: 'Launch App', href: 'https://cartostar.app' }, // overlay layout: the wordmark links here
     poster: { path: 'projects/cartostar-poster.webp', alt: 'Cartostar showing planetary lines over a dark star map', width: 1400, height: 674, fit: 'cover' },
   },
   {
     id: 'halohome',
     title: 'Halo Home',
-    subtitle: 'LLM Based Home Planning',
-    description:
-      'Our platform gives you remedies and actionable insights according to ancient science of interior harmony - vastu shastra.',
-    // halohome.app's own scheme: beige section, charcoal type, black pill CTA
-    theme: { bg: 'bg-beige', fg: 'text-charcoal', muted: 'text-charcoal-muted', titleFont: 'sans', cta: 'bg-charcoal text-white hover:bg-black' },
-    cta: { label: 'Learn More', href: 'https://halohome.app' },
+    // The live hero carries its own copy (headline, subtitle, search, houses), so this band is visual-only + wordmark.
+    layout: 'overlay',
+    // halohome.app's own scheme: beige section, charcoal type
+    theme: { bg: 'bg-beige', fg: 'text-charcoal', muted: 'text-charcoal-muted', titleFont: 'sans' },
+    cta: { label: 'Learn More', href: 'https://halohome.app' }, // overlay layout: the wordmark links here
     poster: { path: 'halohome/hero-houses.webp', alt: 'Isometric 3D illustration of a modern and a traditional house', width: 910, height: 800, fit: 'contain', frame: 'card' },
   },
   {

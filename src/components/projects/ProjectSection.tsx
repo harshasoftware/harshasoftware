@@ -14,11 +14,23 @@ export function ProjectSection({ project }: { project: Project }) {
         <h3
           id={headingId}
           className={cn(
-            'pointer-events-none absolute inset-x-0 bottom-8 z-10 text-center font-bold tracking-[-0.5px]',
+            'pointer-events-none absolute inset-x-0 bottom-7 z-10 text-center font-bold tracking-[-0.5px]',
             theme.titleFont === 'grotesk' ? 'font-grotesk text-[22px]' : 'text-[22px]',
           )}
         >
-          {project.title}
+          {project.cta ? (
+            <a
+              href={project.cta.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${project.title} — ${project.cta.label}`}
+              className="pointer-events-auto inline-block rounded-md px-2 py-1 underline-offset-[6px] transition hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+            >
+              {project.title}
+            </a>
+          ) : (
+            project.title
+          )}
         </h3>
       </section>
     );
