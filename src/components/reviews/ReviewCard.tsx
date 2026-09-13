@@ -2,7 +2,7 @@ import type { Review } from '@/data/testimonials';
 import { img } from '@/lib/images';
 
 const card =
-  'flex h-full w-[86vw] max-w-[440px] flex-col justify-center rounded-2xl border border-neutral-200 bg-white p-7 shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition duration-300 motion-safe:hover:-translate-y-1 hover:border-neutral-300 hover:shadow-[0_18px_40px_rgba(0,0,0,0.10)] md:w-[440px]';
+  'flex h-auto w-[86vw] max-w-[440px] flex-col justify-center rounded-2xl border border-neutral-200 bg-white p-7 shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition duration-300 motion-safe:hover:-translate-y-1 hover:border-neutral-300 hover:shadow-[0_18px_40px_rgba(0,0,0,0.10)] md:w-[440px]';
 
 export function ReviewCard({ review }: { review: Review }) {
   return (

@@ -49,18 +49,18 @@ export function InfiniteMovingCards<T>({
       >
         <ul
           className={cn(
-            'flex w-max min-w-full shrink-0 flex-nowrap items-stretch gap-4 py-6 motion-safe:animate-scroll motion-reduce:animate-none',
+            'flex w-max min-w-full shrink-0 flex-nowrap items-center gap-4 py-6 motion-safe:animate-scroll motion-reduce:animate-none',
             pauseOnHover && 'hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]',
             paused && '[animation-play-state:paused]',
           )}
         >
           {items.map((item) => (
-            <li key={getKey(item)} className="flex shrink-0">
+            <li key={getKey(item)} className="flex shrink-0 items-center">
               {renderItem(item)}
             </li>
           ))}
           {items.map((item) => (
-            <li key={`dup-${getKey(item)}`} className="flex shrink-0" aria-hidden="true">
+            <li key={`dup-${getKey(item)}`} className="flex shrink-0 items-center" aria-hidden="true">
               {renderItem(item)}
             </li>
           ))}
