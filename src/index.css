@@ -58,7 +58,7 @@
 }
 
 html {
-  background: var(--color-navy);
+  background: #ffffff;
   scroll-behavior: smooth;
 }
 
