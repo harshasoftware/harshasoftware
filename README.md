@@ -39,13 +39,16 @@ bun run deploy:dry   # validates without publishing
 bun run deploy       # publishes to the workers.dev URL / custom domain
 ```
 
+Live preview: https://harshasoftware.icy-lake-12be.workers.dev (until the custom domain is bound).
+
 GitHub Actions (`.github/workflows/deploy.yml`): pull requests run lint + build + `wrangler deploy --dry-run`;
-pushes to `main` deploy. Repository secrets required:
+pushes to `main` deploy. The Cloudflare steps are skipped with a warning until the API token secret exists.
+Repository secrets required:
 
 | Secret | Where it comes from |
 |---|---|
-| `CLOUDFLARE_ACCOUNT_ID` | `npx wrangler whoami` |
-| `CLOUDFLARE_API_TOKEN` | Cloudflare dashboard → My Profile → API Tokens → *Edit Cloudflare Workers* template |
+| `CLOUDFLARE_ACCOUNT_ID` | already set (`npx wrangler whoami`) |
+| `CLOUDFLARE_API_TOKEN` | Cloudflare dashboard → My Profile → API Tokens → *Edit Cloudflare Workers* template, then `gh secret set CLOUDFLARE_API_TOKEN` |
 
 ### Custom domain cutover (manual, last step)
 
