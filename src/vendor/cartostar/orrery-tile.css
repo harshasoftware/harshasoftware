@@ -1,0 +1,271 @@
+/* cartostar Landing.css hero + orbiting-planet rules, scoped to the portfolio tile. Cinzel is cartostar's display serif. */
+@import "@fontsource/cinzel/400.css";
+
+.cs-tile {
+  --bg-deep: #10182c;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --font-serif: "Cinzel", "Cinzel Fallback", "Times New Roman", serif;
+  --font-sans: "Inter Variable", "Inter", system-ui, sans-serif;
+  /* The source hero is 100vh tall; scale the orbits into a 440px band. */
+  --orbit-scale: 0.62;
+
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+
+  .cs-orbits {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .cs-glow {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 50%;
+    filter: blur(128px);
+  }
+  .cs-glow--purple { top: 10%; left: 20%; background: rgba(88, 28, 135, 0.18); }
+  .cs-glow--blue { bottom: 10%; right: 20%; background: rgba(30, 58, 138, 0.18); }
+
+  .hero-content-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    pointer-events: none; /* Allow hover to pass through to orbiting planets */
+    padding: 0 16px;
+  }
+
+  .cs-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .cs-pill-new { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; color: #c084fc; }
+  .cs-pill-text { font-size: 12px; color: #a1a1aa; }
+  .cs-pill-arrow { color: #71717a; }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    font-size: clamp(1.6rem, 3.6vw, 3.25rem);
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 1.3vw, 1.25rem);
+    font-weight: 300;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0;
+    line-height: 1.6;
+    min-height: 1.6em;
+  }
+
+  .text-gradient {
+    background: linear-gradient(to bottom, #fff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Stand-in for cartostar's birthplace autocomplete (decorative) */
+  .cs-search {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    width: min(100%, 26rem);
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    color: rgba(233, 213, 255, 0.5);
+    font-size: 1.05rem;
+    font-weight: 500;
+    text-align: left;
+  }
+  .cs-search-icon { color: rgba(233, 213, 255, 0.5); flex-shrink: 0; }
+
+  /* --- Orbiting Planets System --- */
+  .orbiting-planets-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  .orbit-group {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    --r: calc(var(--orbit-radius) * var(--orbit-scale));
+  }
+
+  /* Stack inner orbits on top of outer orbits so they can receive hover events */
+  .orbit-group:nth-child(1) { z-index: 5; }
+  .orbit-group:nth-child(2) { z-index: 4; }
+  .orbit-group:nth-child(3) { z-index: 3; }
+  .orbit-group:nth-child(4) { z-index: 2; }
+  .orbit-group:nth-child(5) { z-index: 1; }
+
+  .orbit-path {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(var(--r) * 2 - 30px);
+    height: calc(var(--r) * 2 - 30px);
+    transform: translate(-50%, -50%);
+    border: 15px solid transparent;
+    outline: 1px solid rgba(147, 112, 219, 0.15);
+    outline-offset: 0;
+    border-radius: 50%;
+    opacity: 0;
+    animation: cs-orbit-path-fade-in 2s ease-out forwards;
+    box-shadow: 0 0 8px rgba(147, 112, 219, 0.1), inset 0 0 8px rgba(147, 112, 219, 0.05);
+    transition: outline-color 0.3s ease, box-shadow 0.3s ease, outline-width 0.3s ease;
+    pointer-events: auto;
+    cursor: pointer;
+    box-sizing: content-box;
+  }
+
+  .orbit-group:nth-child(2) .orbit-path {
+    outline-color: rgba(100, 149, 237, 0.15);
+    box-shadow: 0 0 8px rgba(100, 149, 237, 0.1), inset 0 0 8px rgba(100, 149, 237, 0.05);
+  }
+  .orbit-group:nth-child(4) .orbit-path {
+    outline-color: rgba(255, 182, 193, 0.12);
+    box-shadow: 0 0 8px rgba(255, 182, 193, 0.08), inset 0 0 8px rgba(255, 182, 193, 0.04);
+  }
+
+  .orbiting-planet {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--planet-size);
+    height: var(--planet-size);
+    transform-origin: center;
+    animation: cs-planet-orbit var(--orbit-duration) linear infinite;
+    animation-delay: calc(var(--start-angle) / 360 * var(--orbit-duration) * -1);
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  .orbiting-planet-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.7;
+    filter: grayscale(0.2) brightness(1.1);
+    animation: cs-planet-self-rotate 30s linear infinite, cs-planet-fade-in 1s ease-out forwards;
+    will-change: transform;
+    transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+  }
+
+  /* Hover effects - grow planet and glow orbit on PLANET hover only */
+  .orbiting-planet:hover .orbiting-planet-img {
+    transform: scale(1.5) !important;
+    opacity: 1 !important;
+    filter: grayscale(0) brightness(1.3) drop-shadow(0 0 15px rgba(147, 112, 219, 0.8)) !important;
+  }
+  .orbit-group:has(.orbiting-planet:hover) .orbit-path {
+    outline-color: rgba(147, 112, 219, 0.5);
+    outline-width: 2px;
+    box-shadow: 0 0 20px rgba(147, 112, 219, 0.4), 0 0 40px rgba(147, 112, 219, 0.2), inset 0 0 15px rgba(147, 112, 219, 0.15);
+  }
+  .orbit-group:nth-child(2) .orbiting-planet:hover .orbiting-planet-img {
+    filter: grayscale(0) brightness(1.3) drop-shadow(0 0 15px rgba(100, 149, 237, 0.8)) !important;
+  }
+  .orbit-group:nth-child(2):has(.orbiting-planet:hover) .orbit-path {
+    outline-color: rgba(100, 149, 237, 0.5);
+    box-shadow: 0 0 20px rgba(100, 149, 237, 0.4), 0 0 40px rgba(100, 149, 237, 0.2), inset 0 0 15px rgba(100, 149, 237, 0.15);
+  }
+  .orbit-group:nth-child(4) .orbiting-planet:hover .orbiting-planet-img {
+    filter: grayscale(0) brightness(1.3) drop-shadow(0 0 15px rgba(255, 182, 193, 0.8)) !important;
+  }
+  .orbit-group:nth-child(4):has(.orbiting-planet:hover) .orbit-path {
+    outline-color: rgba(255, 182, 193, 0.5);
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.4), 0 0 40px rgba(255, 182, 193, 0.2), inset 0 0 15px rgba(255, 182, 193, 0.15);
+  }
+
+  /* Off-screen: freeze the orbits (the LiveTile passes active=false) */
+  &.is-paused .orbiting-planet,
+  &.is-paused .orbiting-planet-img {
+    animation-play-state: paused;
+  }
+}
+
+/* Orbital animation - planets revolve around center */
+@keyframes cs-planet-orbit {
+  from {
+    transform: translate(-50%, -50%) rotate(var(--start-angle)) translateX(var(--r)) rotate(calc(var(--start-angle) * -1));
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(calc(var(--start-angle) + 360deg)) translateX(var(--r)) rotate(calc((var(--start-angle) + 360deg) * -1));
+  }
+}
+
+@keyframes cs-planet-self-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes cs-planet-fade-in {
+  from { opacity: 0; }
+  to { opacity: 0.7; }
+}
+
+@keyframes cs-orbit-path-fade-in {
+  to { opacity: 1; }
+}
+
+/* Smaller orbits + planets on narrow screens (source: max-width 768px) */
+@media (max-width: 809px) {
+  .cs-tile {
+    --orbit-scale: 0.42;
+  }
+  .cs-tile .orbit-path {
+    border-width: 10px;
+    width: calc(var(--r) * 2 - 20px);
+    height: calc(var(--r) * 2 - 20px);
+  }
+  .cs-tile .orbiting-planet {
+    width: calc(var(--planet-size) * 0.65);
+    height: calc(var(--planet-size) * 0.65);
+  }
+  .cs-tile .orbiting-planet-img {
+    opacity: 0.5;
+  }
+  .cs-tile .cs-search {
+    width: min(100%, 20rem);
+    font-size: 0.95rem;
+  }
+}

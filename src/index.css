@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/* Self-hosted fonts (same faces the Framer site loads from Google Fonts). */
+@import "@fontsource/lilita-one";
+@import "@fontsource/lekton/700.css";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/space-grotesk";
+
+@theme {
+  /* Framer breakpoints: ≤809 phone, 810–1199 tablet, ≥1200 desktop */
+  --breakpoint-md: 810px;
+  --breakpoint-xl: 1200px;
+
+  --color-navy: #10182c;
+  --color-ink: #001122;
+  --color-sky: #0099ff;
+  --color-pill: #222222;
+  --color-halo: #4bcf35;
+  --color-sand: #d1b38c;
+  --color-chip: #ebebeb;
+  --color-footer: #b7b7a4;
+  --color-body: #333333;
+  --color-quote: #666666;
+
+  --font-display: "Lilita One", system-ui, sans-serif;
+  --font-tag: "Lekton", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-grotesk: "Space Grotesk Variable", "Space Grotesk", ui-sans-serif, sans-serif;
+
+  --animate-scroll: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+
+  --animate-spin-y: spin-y 14s linear infinite;
+  @keyframes spin-y {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+
+  --animate-float: float 6s ease-in-out infinite;
+  @keyframes float {
+    0%, 100% { transform: translateY(-6px); }
+    50% { transform: translateY(10px); }
+  }
+
+  --animate-shadow-pulse: shadow-pulse 6s ease-in-out infinite;
+  @keyframes shadow-pulse {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.55; }
+    50% { transform: translateX(-50%) scale(0.82); opacity: 0.35; }
+  }
+}
+
+html {
+  background: var(--color-navy);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

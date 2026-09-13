@@ -1,0 +1,64 @@
+export type VisualKey = 'cartostar' | 'halohome' | 'zyllion' | 'priceguru';
+
+export interface Project {
+  id: VisualKey;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  theme: {
+    /** Tailwind background utility for the full-bleed band */
+    bg: string;
+    /** Tailwind text color utility for headings/body */
+    fg: string;
+    /** Muted text color utility for subtitles */
+    muted: string;
+    titleFont: 'grotesk' | 'sans';
+  };
+  cta?: { label: string; href: string };
+  /** Static image shown before/without the live visual (path under public/images) */
+  poster: {
+    path: string;
+    alt: string;
+    width: number;
+    height: number;
+    fit: 'cover' | 'contain';
+    /** 'card' renders the image on a white rounded card (artwork with baked-in white areas). */
+    frame?: 'card';
+  };
+}
+
+export const projects: Project[] = [
+  {
+    id: 'cartostar',
+    title: 'Cartostar',
+    subtitle: 'A precision astrocartography tool.',
+    theme: { bg: 'bg-navy', fg: 'text-white', muted: 'text-white/80', titleFont: 'grotesk' },
+    cta: { label: 'Launch App', href: 'https://cartostar.app' },
+    poster: { path: 'projects/cartostar-poster.webp', alt: 'Cartostar showing planetary lines over a dark star map', width: 1400, height: 674, fit: 'cover' },
+  },
+  {
+    id: 'halohome',
+    title: 'Halo Home',
+    subtitle: 'LLM Based Home Planning',
+    description:
+      'Our platform gives you remedies and actionable insights according to ancient science of interior harmony - vastu shastra.',
+    theme: { bg: 'bg-halo', fg: 'text-ink', muted: 'text-ink/85', titleFont: 'sans' },
+    cta: { label: 'Learn More', href: 'https://halohome.app' },
+    poster: { path: 'halohome/hero-houses.webp', alt: 'Isometric 3D illustration of a modern and a traditional house', width: 910, height: 800, fit: 'contain', frame: 'card' },
+  },
+  {
+    id: 'zyllion',
+    title: 'Zyllion',
+    subtitle: 'Secure SOC2 platform for 1099, W2 onboarding',
+    theme: { bg: 'bg-white', fg: 'text-body', muted: 'text-body/85', titleFont: 'sans' },
+    poster: { path: 'projects/zyllion-logo.png', alt: 'Zyllion blue octahedron logo', width: 779, height: 620, fit: 'contain' },
+  },
+  {
+    id: 'priceguru',
+    title: 'Price Guru',
+    subtitle: 'Web 3.0 IPFS Protocol based Chrome Extension for Shopping',
+    theme: { bg: 'bg-sand', fg: 'text-body', muted: 'text-body/85', titleFont: 'sans' },
+    cta: { label: 'Learn More', href: 'https://price.guru' },
+    poster: { path: 'projects/priceguru-avatar.webp', alt: 'Price Guru mascot wearing an orange turban', width: 800, height: 800, fit: 'contain' },
+  },
+];

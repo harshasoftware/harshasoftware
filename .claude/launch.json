@@ -1,0 +1,34 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "port": 5173
+    },
+    {
+      "name": "preview",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": [
+        "run",
+        "preview",
+        "--port",
+        "4173"
+      ],
+      "port": 4173
+    },
+    {
+      "name": "cf",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "export PATH=\"$HOME/.nvm/versions/node/v25.0.0/bin:$PATH\"; exec node node_modules/wrangler/bin/wrangler.js dev --port 8787"
+      ],
+      "port": 8787
+    }
+  ]
+}

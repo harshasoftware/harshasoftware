@@ -1,0 +1,287 @@
+/* halohome Landing.css hero + hotspot rules, scoped to the portfolio tile. Plus Jakarta Sans is halohome's UI face. */
+@import "@fontsource-variable/plus-jakarta-sans";
+
+.hh-tile {
+  --text-primary: #18181b;
+  --text-secondary: #292524;
+  --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  /* A definite row track so the card's height: 100% resolves against the tile height. */
+  grid-template-rows: minmax(0, 1fr);
+  align-items: center;
+  gap: 2rem;
+  padding: 0 16px;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+
+  .hh-tile-text {
+    justify-self: end;
+    max-width: 460px;
+    width: 100%;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    line-height: 1.1;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    min-height: calc(clamp(2rem, 3.4vw, 3rem) * 2.3);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    max-width: 420px;
+    line-height: 1.5;
+    margin: 16px 0 0;
+    font-weight: 400;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #292524 0%, #57534e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Stand-in for halohome's address autocomplete (decorative) */
+  .hh-search {
+    margin-top: 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: min(100%, 360px);
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    color: #71717a;
+    font-size: 0.95rem;
+  }
+
+  .hh-search-icon {
+    width: 16px;
+    height: 16px;
+    color: #a1a1aa;
+  }
+
+  /* Hero image wrapper — a white card (halohome's hero is white; the artwork has an
+     opaque white platform baked in) sized by the tile height so it never overflows the band. */
+  .hero-image-wrapper {
+    position: relative;
+    height: 100%;
+    max-height: 100%;
+    aspect-ratio: 910 / 800;
+    width: auto;
+    max-width: 100%;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4%;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 28px;
+    box-shadow: 0 24px 48px rgba(0, 40, 0, 0.18);
+    justify-self: start;
+  }
+
+  .hero-houses-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* --- Hero house hover micro-interactions (desktop only) --- */
+  .hero-house-hotspots {
+    position: absolute;
+    inset: 0;
+    pointer-events: none; /* hotspots enable pointer events */
+  }
+
+  .hero-house-hotspot {
+    position: absolute;
+    pointer-events: auto;
+    --hero-glow-rgb: 212, 163, 115;
+  }
+
+  .hero-house-hotspot--left {
+    left: 20%;
+    top: 38%;
+    --hero-tooltip-top: -40px;
+    --hero-glow-rgb: 56, 189, 248;
+  }
+
+  .hero-house-hotspot--right {
+    left: 58%;
+    top: 38%;
+  }
+
+  .hero-house-hit {
+    width: 150px;
+    height: 140px;
+    border: 0;
+    background: transparent;
+    cursor: default;
+    border-radius: 28px;
+    outline: none;
+    position: relative;
+  }
+
+  .hero-house-hotspot--left .hero-house-hit {
+    height: 170px;
+  }
+
+  .hero-house-hit::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border-radius: 32px;
+    background: radial-gradient(circle at 50% 50%, rgba(var(--hero-glow-rgb), 0.3), rgba(var(--hero-glow-rgb), 0) 60%);
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 200ms ease, transform 200ms ease;
+    pointer-events: none;
+  }
+
+  .hero-house-hotspot:hover .hero-house-hit::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .hero-house-tooltip {
+    position: absolute;
+    left: 50%;
+    top: var(--hero-tooltip-top, -8px);
+    transform: translate(-50%, -100%) translateY(8px) scale(0.98);
+    opacity: 0;
+    transition: opacity 200ms ease, transform 200ms ease;
+    will-change: transform, opacity;
+    pointer-events: none;
+  }
+
+  .hero-house-hotspot:hover .hero-house-tooltip {
+    opacity: 1;
+    transform: translate(-50%, -100%) translateY(0) scale(1);
+  }
+
+  .hero-house-tooltip-card {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 18px;
+    padding: 10px 12px;
+    min-width: 210px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+  }
+
+  .hero-house-tooltip-card--tall {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    min-height: 74px;
+  }
+
+  .hero-house-tooltip-card::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -7px;
+    width: 14px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.92);
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .hero-house-tooltip-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .hero-house-tooltip-title {
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: #18181b;
+  }
+
+  .hero-house-tooltip-score-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    color: #0a0a0a;
+    background: linear-gradient(135deg, #dbcbb0 0%, #d4a373 100%);
+    box-shadow: 0 10px 18px rgba(212, 163, 115, 0.18);
+  }
+
+  .hero-house-tooltip-score-pill--mid {
+    background: linear-gradient(135deg, #f4f4f5 0%, #dbcbb0 100%);
+    box-shadow: 0 10px 18px rgba(219, 203, 176, 0.18);
+  }
+
+  .hero-house-tooltip-score-pill--good {
+    color: #052e12;
+    background: linear-gradient(135deg, #bff3c0 0%, #5edc5f 100%);
+    box-shadow: 0 10px 18px rgba(94, 220, 95, 0.2);
+  }
+
+  .hero-house-tooltip-sub {
+    margin-top: 6px;
+    font-size: 11px;
+    line-height: 1.35;
+    color: #52525b;
+  }
+}
+
+/* Below the desktop breakpoint the tile stacks; hotspots are hover-only. */
+@media (max-width: 1199px) {
+  .hh-tile {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    justify-items: center;
+    gap: 1rem;
+    padding: 0;
+  }
+  .hh-tile .hh-tile-text {
+    justify-self: center;
+    text-align: center;
+    max-width: 520px;
+  }
+  .hh-tile .hero-title {
+    justify-content: center;
+    min-height: 0;
+  }
+  .hh-tile .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hh-tile .hh-search {
+    display: none;
+  }
+  .hh-tile .hero-image-wrapper {
+    justify-self: center;
+  }
+}
+
+@media (hover: none), (max-width: 1024px) {
+  .hh-tile .hero-house-hotspots {
+    display: none;
+  }
+}
